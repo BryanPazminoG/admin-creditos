@@ -15,21 +15,21 @@ public class CreditoRestService {
     }
 
     public ResponseEntity<String> obtenerPorId(Integer id) {
-        String url = "http://localhost:8081/api/v1/creditos/" + id;
+        String url = "http://34.72.172.227:8080/api/v1/creditos/" + id;
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
         validarRespuesta(response);
         return response;
     }
 
     public ResponseEntity<String> crear(String creditoDtoJson) {
-        String url = "http://localhost:8081/api/v1/creditos";
+        String url = "http://34.72.172.227:8080/api/v1/creditos";
         ResponseEntity<String> response = restTemplate.postForEntity(url, creditoDtoJson, String.class);
         validarRespuesta(response);
         return response;
     }
 
     public ResponseEntity<String> buscarPorCliente(String codCliente) {
-        String url = UriComponentsBuilder.fromHttpUrl("http://localhost:8081/api/v1/creditos")
+        String url = UriComponentsBuilder.fromHttpUrl("http://34.72.172.227:8080/api/v1/creditos")
                 .queryParam("codCliente", codCliente)
                 .build()
                 .toString();
@@ -39,13 +39,13 @@ public class CreditoRestService {
     }
 
     public ResponseEntity<String> actualizar(String creditoDtoJson, Integer id) {
-        String url = "http://localhost:8081/api/v1/creditos/" + id;
+        String url = "http://34.72.172.227:8080/api/v1/creditos/" + id;
         restTemplate.put(url, creditoDtoJson);
         return ResponseEntity.noContent().build();
     }
 
     public ResponseEntity<String> cambiarEstado(Integer id, String estado) {
-        String url = UriComponentsBuilder.fromHttpUrl("http://localhost:8081/api/v1/creditos")
+        String url = UriComponentsBuilder.fromHttpUrl("http://34.72.172.227:8080/api/v1/creditos")
                 .pathSegment(id.toString(), "estado")
                 .queryParam("estado", estado)
                 .build()
